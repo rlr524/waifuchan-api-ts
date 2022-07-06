@@ -11,4 +11,10 @@ export default {
 	dbUri: `mongodb+srv://${dbService}:${dbPass}@cluster0.mdczd.mongodb.net/waifuchanDB?retryWrites=true&w=majority`,
 	saltWorkFactor: 10,
 	apiVersion: "v1",
+	accessTokenTtl: "15m",
+	refreshTokenTtl: "1y",
+	accessTokenPrivateKey: ``,
+	accessTokenPublicKey: ``,
+	refreshTokenPrivateKey: ``,
+	refreshTokenPublicKey: ``,
 };

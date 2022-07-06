@@ -8,10 +8,7 @@ export interface UserInput {
 	password: string;
 }
 
-export interface UserDocument extends mongoose.Document {
-	email: string;
-	name: string;
-	password: string;
+export interface UserDocument extends UserInput, mongoose.Document {
 	locked: boolean;
 	deleted: boolean;
 	createdAt: Date;
@@ -40,9 +37,7 @@ userSchema.pre("save", async function (next) {
 	}
 
 	const salt = await bcrypt.genSalt(config.get<number>("saltWorkFactor"));
-	const hash = bcrypt.hashSync(user.password, salt);
-
-	user.password = hash;
+	user.password = bcrypt.hashSync(user.password, salt);
 	return next();
 });
 

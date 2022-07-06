@@ -19,6 +19,7 @@
     "@types/jsonwebtoken": "^8.5.8",
     "@types/lodash": "^4.14.182",
     "@types/node": "^18.0.1",
+    "@types/response-time": "^2.3.5",
     "@types/swagger-jsdoc": "^6.0.1",
     "@types/swagger-ui-express": "^4.1.3",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
@@ -40,6 +41,8 @@
     "nanoid": "^4.0.0",
     "pino": "^8.1.0",
     "pino-pretty": "^8.1.0",
+    "prom-client": "^14.0.1",
+    "response-time": "^2.3.2",
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.4.0",
     "zod": "^3.17.3"
