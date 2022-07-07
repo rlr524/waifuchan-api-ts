@@ -12,7 +12,7 @@ export async function createUserHandler(req: Request<Record<string, never>, Reco
 	try {
 		const user = await createUser(req.body)
 		return res.send({
-			message: `User [${user.email}] created with user id: ${user.id}`,
+			message: `User [${user.email}] created with user id: ${user._id}`,
 		})
 	} catch (e: any) {
 		logger.error(e);

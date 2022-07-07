@@ -5,6 +5,8 @@ import config from "config";
 import { findUser } from "./user.service"
 import { verifyJwt, signJwt} from "../utils/jwt.utils";
 
+const refreshTokenPublicKey = config.get<string>("refreshTokenPublicKey")
+
 export async function createSession(userId: string, userAgent: string) {
     const session = await SessionModel.create({ user: userId, userAgent });
 
@@ -20,7 +22,7 @@ export async function updateSession(query: FilterQuery<SessionDocument>, update:
 }
 
 export async function reissueAccessToken({refreshToken,}: {refreshToken: string}) {
-    const { decoded } = verifyJwt(refreshToken, "refreshTokenPublicKey");
+    const { decoded } = verifyJwt(refreshTokenPublicKey);
     if (!decoded || !get(decoded, "session")) return false;
     const session = await SessionModel.findById(get(decoded, "session"));
 
@@ -32,7 +34,6 @@ export async function reissueAccessToken({refreshToken,}: {refreshToken: string}
 
     return signJwt(
         { ...user, session: session._id },
-        "accessTokenPrivateKey",
         { expiresIn: config.get("accessTokenTtl") } // 15 minutes
     );
 }

@@ -8,7 +8,8 @@ import { omit } from "lodash";
  */
 export async function createUser(input: UserInput) {
 	try {
-		return await UserModel.create(input);
+		const user = await UserModel.create(input);
+		return omit(user.toJSON(), "password");
 	} catch (e: any) {
 		throw new Error(e);
 	}
